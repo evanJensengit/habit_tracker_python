@@ -1,0 +1,14 @@
+read in the file and then print out the pci, cumulative of calls made that week
+times I meditated, worked out, full body stretch average sleep, that week
+
+average sleep: if no number to the right of y then it is 8 hours
+
+output:
+week last 7 days i.e 3/16-3/23 (march 16 - march 23 looks better?)
+Meditated: 5 days in last 7 days 
+Worked out: 6 days in last 7 days
+sleep: average of 7.5 hours a night last 7 days
+stretched: 4 days last 7 days
+PCI: 8/49
+Calls made: 10
+
