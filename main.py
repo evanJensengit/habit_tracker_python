@@ -1,14 +1,21 @@
 
-class Day:
-    def __init__(date, workout, sleep, meditate, stretch, calls, sugar, pci)
-    self.date = date
-    self.workout = workout
-    self.sleep = sleep
-    self.meditate = meditate
-    self.stretch = stretch
-    self.calls = calls
-    self.sugar = sugar
-    self.pci = pci
+class Week:
+    workout = 0
+    sleep = 0
+    meditate = 0
+    stretch = 0
+    calls = 0
+    sugar = 0
+    pci = 0
+    def __init__(self):
+        self.workout = 0
+        self.sleep = 0
+        self.meditate = 0
+        self.stretch = 0
+        self.calls = 0
+        self.sugar = 0
+        self.pci = 0
+        
     # Date: str
     # Workout: str
     # Sleep: str
@@ -17,6 +24,15 @@ class Day:
     # Calls: int
     # Sugar: str
     # PCI: int
+
+def processWeek(lines):
+
+    week = Week()
+    for line in lines: 
+        if not line:
+            words = line.split(":")
+            print(words[1])
+    return week
 
 
     
@@ -27,14 +43,7 @@ lines = []
 with open('pci.txt') as f:
     lines = f.readlines()
 word = []
-dayObjects = []
-listWithDayObjectsRaw = []
-count = 0
-for line in lines:
-    if not line:
-        createDay(listWithDayObjectsRaw,)
-    word = line.split(":")
-    listWithDayObjectsRaw.append(word)
-    
-    print(line)
 
+count = 0
+week = processWeek(lines)
+print(week)
