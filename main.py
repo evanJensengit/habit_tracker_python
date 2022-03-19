@@ -1,4 +1,11 @@
 
+workout = "Wrkt"
+sleep = "Sleep"
+meditate = "Meditate"
+stretch = "Stretch"
+calls = "Calls"
+sugar = "Sugar"
+pci = "PCI"
 class Week:
     workout = 0
     sleep = 0
@@ -8,32 +15,32 @@ class Week:
     sugar = 0
     pci = 0
     def __init__(self):
-        self.workout = 0
-        self.sleep = 0
-        self.meditate = 0
-        self.stretch = 0
-        self.calls = 0
-        self.sugar = 0
-        self.pci = 0
+        return
+
+    def processWeek(self, lines):
         
-    # Date: str
-    # Workout: str
-    # Sleep: str
-    # Meditate: str
-    # Stretch: str
-    # Calls: int
-    # Sugar: str
-    # PCI: int
-
-def processWeek(lines):
-
-    week = Week()
-    for line in lines: 
-        if not line:
+        for line in lines: 
             words = line.split(":")
-            print(words[1])
-    return week
+            if len(words) > 1:
+                print(words[1],end='')
+                
+                if len(words) == 2:
+                   YornAndType = words[1].split(" ")
+                else:
+                    YornAndType = words[1]
+                if words[0] == "Wrkt" and YornAndType[1]=="y":
+                    self.workout += 1
 
+            
+        return
+    def printWeek(self):
+        print(self.workout)
+        print(self.sleep)
+        print(self.meditate)
+        print(self.stretch)
+        print(self.calls)
+        print(self.sugar)
+        print(self.pci)
 
     
 f = open('pci.txt','r')
@@ -42,8 +49,6 @@ lines = []
 
 with open('pci.txt') as f:
     lines = f.readlines()
-word = []
-
-count = 0
-week = processWeek(lines)
-print(week)
+week = Week()
+week.processWeek(lines)
+week.printWeek()
