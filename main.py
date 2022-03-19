@@ -7,7 +7,9 @@ calls = "Calls"
 sugar = "<20 g sugar"
 pci = "PCI"
 caffeine = "<300 mg caff"
+date = "Date"
 class Week:
+    date = ""
     workout = 0
     sleep = 0
     meditate = 0
@@ -21,7 +23,8 @@ class Week:
 
     #increments number of week object data members based on data in lines list
     def processWeek(self, lines):
-        
+        count = 0
+
         for line in lines: 
             
             words = line.split(":") #get description of item to be tracked and value of that item
@@ -29,38 +32,47 @@ class Week:
             if len(words) > 1: #there is something in the line
                 descript = words[0]
                 
-                yesorno = words[1]
-
-               
+                data = words[1]
                 # for word in words:
                 #     print(word,end='')
-               
-                if descript == workout and yesorno[1]== "y":
+                if descript == date:
+                    if count == 0:
+                        self.date += data.strip()
+                    elif count == 6:
+                       # self.date += " - "
+                        data += " - " + self.date
+                        data = data.strip()
+                        self.date = data.replace("\n","")
+                    elif count > 6:
+                        break
+                    count += 1
+
+                    
+                if descript == workout and data[1]== "y":
                     self.workout += 1
                 elif descript == pci:
-                    self.pci += int(yesorno[1])
+                    self.pci += int(data[1])
                 elif descript == calls:
-                    self.calls += int(yesorno[1])
+                    self.calls += int(data[1])
                 elif descript == meditate:
-                    if (yesorno[1] == "y"):
+                    if (data[1] == "y"):
                         self.meditate += 1
                 elif descript == stretch:
-                    if (yesorno[1] == "y"):
+                    if (data[1] == "y"):
                         self.stretch += 1
                 elif descript == sugar:
-                    if (yesorno[1] == "y"):
+                    if (data[1] == "y"):
                         self.sugar += 1
                 elif descript == caffeine:
-                    if (yesorno[1] == "y"):
+                    if (data[1] == "y"):
                         self.caffeine += 1
                 elif descript == sleep:
-                    if (yesorno[1] == "y"):
+                    if (data[1] == "y"):
                         self.sleep += 1
-
-            
         return
+
     def printWeek(self):
-        print("Last 7 days stats and PCI:")
+        print(" PCI for", self.date)
         print("  Total workouts:   ", self.workout)
         print("  8 hours sleep:    ", self.sleep)
         print("  Meditated:        ", self.meditate)
