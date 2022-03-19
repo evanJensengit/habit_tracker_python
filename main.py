@@ -4,8 +4,9 @@ sleep = "Sleep"
 meditate = "Meditate"
 stretch = "Stretch"
 calls = "Calls"
-sugar = "Sugar"
+sugar = "<20 g sugar"
 pci = "PCI"
+caffeine = "<300 mg caff"
 class Week:
     workout = 0
     sleep = 0
@@ -14,6 +15,7 @@ class Week:
     calls = 0
     sugar = 0
     pci = 0
+    caffeine = 0
     def __init__(self):
         return
 
@@ -23,37 +25,51 @@ class Week:
         for line in lines: 
             
             words = line.split(":") #get description of item to be tracked and value of that item
-
+            
             if len(words) > 1: #there is something in the line
                 descript = words[0]
-                YornAndType = []
+                
+                yesorno = words[1]
 
-                if len(words) > 2: 
-                   YornAndType = words[1].split(' ') #get the y and other data 
-                else:
-                    YornAndType.append(words[1]) #no type 
-
+               
                 # for word in words:
                 #     print(word,end='')
-                count = 0
-                for yorn in YornAndType:
-                    
-                    print(count, " ", yorn)
-                    count +=1
-                #print("hi" + YornAndType[0],end='')
-                if descript == workout and words[1][1]=="y":
+               
+                if descript == workout and yesorno[1]== "y":
                     self.workout += 1
+                elif descript == pci:
+                    self.pci += int(yesorno[1])
+                elif descript == calls:
+                    self.calls += int(yesorno[1])
+                elif descript == meditate:
+                    if (yesorno[1] == "y"):
+                        self.meditate += 1
+                elif descript == stretch:
+                    if (yesorno[1] == "y"):
+                        self.stretch += 1
+                elif descript == sugar:
+                    if (yesorno[1] == "y"):
+                        self.sugar += 1
+                elif descript == caffeine:
+                    if (yesorno[1] == "y"):
+                        self.caffeine += 1
+                elif descript == sleep:
+                    if (yesorno[1] == "y"):
+                        self.sleep += 1
 
             
         return
     def printWeek(self):
-        print(self.workout)
-        print(self.sleep)
-        print(self.meditate)
-        print(self.stretch)
-        print(self.calls)
-        print(self.sugar)
-        print(self.pci)
+        print("Last 7 days stats and PCI:")
+        print("  Total workouts:   ", self.workout)
+        print("  8 hours sleep:    ", self.sleep)
+        print("  Meditated:        ", self.meditate)
+        print("  Stretched:        ", self.stretch)
+        print("  Sugar < 20 g:     ", self.sugar)
+        print("  Caffeine < 300 mg:", self.caffeine)
+        print("  Calls:            ", self.calls)
+        print("  PCI score:        ", self.pci)
+
 
     
 f = open('pci.txt','r')
